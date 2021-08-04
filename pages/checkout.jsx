@@ -61,14 +61,12 @@ export default function Checkout() {
 
     useEffect(() => {
         if (dataOrder && !errorOrder) {
-            console.log(dataOrder)
             setOrderActive(dataOrder.activeOrder)
         }
     }, [dataOrder, errorOrder])
 
     if (errorCustomer) return console.log(errorCustomer)
 
-    console.log(customer, dataOrder)
 
     const steps = [
         'Direcciones de entrega',

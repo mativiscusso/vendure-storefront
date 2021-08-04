@@ -1,5 +1,4 @@
 export const listToTree2 = (data, options) => {
-    console.log(data)
     options = options || {}
     const ID_KEY = options.idKey || 'id'
     const PARENT_KEY = options.parentKey || 'parent'

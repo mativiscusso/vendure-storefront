@@ -64,7 +64,6 @@ const CategoryFilter = ({
     }
 
     const handleDelete = (chipToDelete) => () => {
-        console.log(chipToDelete)
         setFacetsSelected((prevState) =>
             prevState.filter((chip) => chip !== chipToDelete.key)
         )

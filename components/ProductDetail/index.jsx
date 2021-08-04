@@ -61,7 +61,6 @@ const ProductDetail = (props) => {
 
     if (loading) return <CircularProgress />
 
-    console.log(product)
     return (
         <Container>
             {product && (
