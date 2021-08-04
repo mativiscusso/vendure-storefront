@@ -1,7 +1,6 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { USER_RESET_PASSWORD } from 'graphql/mutations'
 import { useRouter } from 'next/router'
-import { UserContext } from 'utils/userContext'
 import {
     Button,
     CircularProgress,

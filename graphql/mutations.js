@@ -85,12 +85,13 @@ export const USER_REQUEST_RESET_PASSWORD = gql`
         }
     }
 `
-export const USER_RESET_PASSWORD = `
-mutation resetPassword($token:String!, $password: String!) {
-    resetPassword(token:$token, password:$password) {
-     __typename
+export const USER_RESET_PASSWORD = gql`
+    mutation resetPassword($token: String!, $password: String!) {
+        resetPassword(token: $token, password: $password) {
+            __typename
+        }
     }
-  }`
+`
 
 export const ADD_ITEM_CART = gql`
     ${CART_FRAGMENT}
