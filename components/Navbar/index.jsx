@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import styles from './Navbar.module.css'
 
 import {
     AppBar,
@@ -86,21 +87,6 @@ export default function Navbar() {
             setIsPrivatePage(false)
         }
     }, [router])
-
-    useEffect(() => {
-        const setResponsiveness = () => {
-            return window.innerWidth < 900
-                ? setState((prevState) => ({ ...prevState, mobileView: true }))
-                : setState((prevState) => ({
-                      ...prevState,
-                      mobileView: false,
-                  }))
-        }
-
-        setResponsiveness()
-
-        window.addEventListener('resize', () => setResponsiveness())
-    }, [])
 
     const displayDesktop = () => {
         return (
@@ -200,11 +186,11 @@ export default function Navbar() {
     return (
         <nav>
             {isPrivatePage === false ? (
-                mobileView ? (
-                    displayMobile()
-                ) : (
-                    displayDesktop()
-                )
+                <>
+                    <div className={styles.mobile}>{displayMobile()}</div>
+
+                    <div className={styles.desktop}>{displayDesktop()}</div>
+                </>
             ) : (
                 <AppBar>
                     <Toolbar>{Logo}</Toolbar>
