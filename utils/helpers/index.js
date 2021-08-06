@@ -33,7 +33,7 @@ export const listToTree = (nodes) => {
     const topLevelNodes = []
     const mappedArr = {}
 
-    // First map the nodes of the array to an object -> create a hash table.
+    // First map the nodes of the array to an object -> create a hashS table.
     for (const node of nodes) {
         mappedArr[node.id] = { ...node, children: [] }
     }
