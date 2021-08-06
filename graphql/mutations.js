@@ -221,3 +221,40 @@ export const USER_PASSWORD_UPDATE = gql`
         }
     }
 `
+
+export const SET_PAYMENT_METHOD_ORDER_MERCADO_PAGO = `
+    mutation addPaymentToOrder($input: PaymentInput!) {
+        addPaymentToOrder(input: $input) {
+            __typename
+            ... on Order {
+                    payments {
+                        method
+                        state
+                        transactionId
+                        amount
+                        errorMessage
+                        refunds {
+                            total
+                            reason
+                        }
+                        metadata
+                    }
+                    currencyCode
+                    fulfillments {
+                        id
+                        state
+                        method
+                        trackingCode
+                    }
+               
+            }
+            ... on PaymentDeclinedError {
+                errorCode
+                message
+                paymentErrorMessage
+              }
+            
+        }
+        
+    }
+`

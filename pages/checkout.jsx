@@ -65,8 +65,7 @@ export default function Checkout() {
         }
     }, [dataOrder, errorOrder])
 
-    if (errorCustomer) return console.log(errorCustomer)
-
+    if (errorCustomer) console.log(errorCustomer)
 
     const steps = [
         'Direcciones de entrega',

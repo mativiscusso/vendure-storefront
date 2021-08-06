@@ -24,7 +24,7 @@ const CategoryFilter = ({
     const [facets, setFacets] = useState(undefined)
     const [state, setState] = useState(false)
     const [facetsSelected, setFacetsSelected] = useState([])
-    const [isMobile] = useState(false)
+    const [isMobile] = useState(window.innerWidth < 900)
 
     const [filterByFacet, { data, loading, error }] =
         useLazyQuery(SEARCH_PRODUCTS)

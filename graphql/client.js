@@ -1,7 +1,7 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
 
 const httpLink = createHttpLink({
-    uri: `${process.env.NEXT_PUBLIC_URL_SHOP_API}/shop-api`,
+    uri: 'http://localhost:4000/shop-api',
     credentials: 'include',
 })
 

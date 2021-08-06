@@ -97,7 +97,7 @@ export default function Product(props) {
             </Link>
             <CardActions>
                 <QuickView {...props} />
-                <Link href={`/products/${props.productId}`}>
+                <Link href={`/products/${props.slug}`}>
                     <a style={{ width: '100%' }}>
                         <Button variant="outlined" color="primary" fullWidth>
                             COMPRAR

@@ -14,6 +14,8 @@ import {
 import { SET_SHIPPING_METHOD_ORDER } from 'graphql/mutations'
 import { CircularProgress } from '@material-ui/core'
 
+import MercadoPagoForm from 'components/MercadoPagoForm'
+
 export default function ShippingsForm({
     handleNext,
     handleBack,
@@ -102,6 +104,8 @@ export default function ShippingsForm({
                                 />
                             ))}
                     </RadioGroup>
+
+                    <MercadoPagoForm />
                 </Grid>
                 <Grid
                     item
