@@ -1,12 +1,40 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client'
+import {
+    ApolloClient,
+    ApolloLink,
+    createHttpLink,
+    InMemoryCache,
+} from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 
 const httpLink = createHttpLink({
     uri: `${process.env.NEXT_PUBLIC_URL_SHOP_API}/shop-api`,
-    credentials: 'include',
+    withCredentials: true,
+})
+
+const afterwareLink = new ApolloLink((operation, forward) => {
+    return forward(operation).map((response) => {
+        const context = operation.getContext()
+        const authHeader = context.response.headers.get('vendure-auth-token')
+        localStorage.setItem('vendure-auth-token', authHeader)
+
+        return response
+    })
 })
 
 const client = new ApolloClient({
-    link: httpLink,
+    link: ApolloLink.from([
+        setContext(() => {
+            const authToken = localStorage.getItem('vendure-auth-token')
+            if (authToken) {
+                return {
+                    headers: {
+                        authorization: `Bearer ${authToken}`,
+                    },
+                }
+            }
+        }),
+        afterwareLink.concat(httpLink),
+    ]),
     cache: new InMemoryCache(),
 })
 
