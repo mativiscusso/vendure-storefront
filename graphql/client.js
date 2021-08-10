@@ -17,7 +17,7 @@ const afterwareLink = new ApolloLink((operation, forward) => {
     return forward(operation).map((response) => {
         const context = operation.getContext()
         const authHeader = context.response.headers.get('vendure-auth-token')
-        console.log(authHeader, existTokenInLocalStorage)
+        response.data.token = authHeader
         if (authHeader && !existTokenInLocalStorage) {
             localStorage.setItem('vendure-auth-token', authHeader)
         }

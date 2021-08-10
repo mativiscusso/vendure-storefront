@@ -97,10 +97,11 @@ export default function Register() {
                 case 'Success':
                     setStatusRegister({
                         status: 'ok',
-                        msg: 'Registro exitoso. Hemos enviado un email para confirmación.',
+                        msg: 'Registro exitoso. Lo estamos reenviando.',
                         disabled: true,
                     })
-
+                    localStorage.setItem('vendure-auth-token', data.token)
+                    router.push('/')
                     break
             }
         } else {

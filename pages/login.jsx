@@ -78,6 +78,7 @@ export default function Login() {
         }
         if (user.user && user.password) {
             const { data } = await login({ variables: user })
+
             switch (data.login.__typename) {
                 case 'InvalidCredentialsError':
                     setStatusLogin({
@@ -92,6 +93,7 @@ export default function Login() {
                     })
                     break
                 case 'CurrentUser':
+                    localStorage.setItem('vendure-auth-token', data.token)
                     currentUser()
                     router.replace('/')
                     break
