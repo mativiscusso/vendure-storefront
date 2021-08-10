@@ -12,11 +12,15 @@ const httpLink = createHttpLink({
 })
 
 const afterwareLink = new ApolloLink((operation, forward) => {
+    const existTokenInLocalStorage =
+        localStorage.getItem('vendure-auth-token') !== null
     return forward(operation).map((response) => {
         const context = operation.getContext()
         const authHeader = context.response.headers.get('vendure-auth-token')
-        localStorage.setItem('vendure-auth-token', authHeader)
-
+        console.log(authHeader, existTokenInLocalStorage)
+        if (authHeader && !existTokenInLocalStorage) {
+            localStorage.setItem('vendure-auth-token', authHeader)
+        }
         return response
     })
 })
